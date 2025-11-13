@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Portfolio</title>
+  <style>
+    /* ====== Global Styles ====== */
+    :root {
+      --bg-color: #f9f9f9;
+      --text-color: #222;
+      --card-bg: #fff;
+      --accent-color: #0077ff;
+    }
+
+    body.dark-mode {
+      --bg-color: #121212;
+      --text-color: #f1f1f1;
+      --card-bg: #1e1e1e;
+      --accent-color: #4dabf7;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: all 0.3s ease;
+    }
+
+    header {
+      background-color: var(--card-bg);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.5rem;
+      color: var(--accent-color);
+    }
+
+    nav a {
+      text-decoration: none;
+      margin: 0 10px;
+      color: var(--text-color);
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      color: var(--accent-color);
+    }
+
+    /* ====== Sections ====== */
+    section {
+      padding: 50px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    h2 {
+      color: var(--accent-color);
+      border-bottom: 2px solid var(--accent-color);
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+
+    .about p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    /* ====== Skills Section ====== */
+    .skills {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 20px;
+    }
+
+    .skill-card {
+      background: var(--card-bg);
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    /* ====== Projects Section ====== */
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .project-card {
+      background: var(--card-bg);
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .project-card h3 {
+      margin-top: 0;
+    }
+
+    /* ====== Contact Form ====== */
+    form {
+      background: var(--card-bg);
+      padding: 25px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      max-width: 600px;
+      margin: auto;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+
+    button {
+      background: var(--accent-color);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .error {
+      color: red;
+      font-size: 0.9rem;
+    }
+
+    /* ====== Dark Mode Toggle ====== */
+    #toggleDark {
+      cursor: pointer;
+      border: none;
+      background: var(--accent-color);
+      color: white;
+      padding: 8px 14px;
+      border-radius: 5px;
+      font-size: 0.9rem;
+    }
+
+    /* ====== Responsive ====== */
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      nav {
+        margin-top: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>My Portfolio</h1>
+    <div>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+    <button id="toggleDark">🌙 Dark Mode</button>
+  </header>
+
+  <!-- ====== About Me ====== -->
+  <section id="about" class="about">
+    <h2>About Me</h2>
+    <p>Hello! I'm a passionate web developer skilled in creating responsive and dynamic websites using HTML, CSS, and JavaScript. I enjoy solving problems and bringing creative ideas to life through code.</p>
+  </section>
+
+  <!-- ====== Skills ====== -->
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="skills">
+      <div class="skill-card">HTML5</div>
+      <div class="skill-card">CSS3</div>
+      <div class="skill-card">JavaScript</div>
+      <div class="skill-card">React</div>
+      <div class="skill-card">Python</div>
+    </div>
+  </section>
+
+  <!-- ====== Projects ====== -->
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="projects">
+      <div class="project-card">
+        <h3>Portfolio Website</h3>
+        <p>A responsive portfolio to showcase my skills and projects.</p>
+      </div>
+      <div class="project-card">
+        <h3>Weather App</h3>
+        <p>Displays real-time weather data using public APIs.</p>
+      </div>
+      <div class="project-card">
+        <h3>To-Do List</h3>
+        <p>A task management app with local storage support.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== Contact ====== -->
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <form id="contactForm" novalidate>
+      <label for="name">Name:</label>
+      <input type="text" id="name" placeholder="Your name">
+      <div class="error" id="nameError"></div>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" placeholder="Your email">
+      <div class="error" id="emailError"></div>
+
+      <label for="message">Message:</label>
+      <textarea id="message" rows="4" placeholder="Your message"></textarea>
+      <div class="error" id="messageError"></div>
+
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <script>
+    // ====== Dark Mode Toggle ======
+    const toggleDark = document.getElementById('toggleDark');
+    toggleDark.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      toggleDark.textContent = document.body.classList.contains('dark-mode')
+        ? '☀️ Light Mode'
+        : '🌙 Dark Mode';
+    });
+
+    // ====== Contact Form Validation ======
+    const form = document.getElementById('contactForm');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      let valid = true;
+
+      const name = document.getElementById('name');
+      const email = document.getElementById('email');
+      const message = document.getElementById('message');
+
+      const nameError = document.getElementById('nameError');
+      const emailError = document.getElementById('emailError');
+      const messageError = document.getElementById('messageError');
+
+      // Reset errors
+      nameError.textContent = '';
+      emailError.textContent = '';
+      messageError.textContent = '';
+
+      // Validate name
+      if (name.value.trim() === '') {
+        nameError.textContent = 'Please enter your name.';
+        valid = false;
+      }
+
+      // Validate email
+      const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+      if (!email.value.match(emailPattern)) {
+        emailError.textContent = 'Please enter a valid email.';
+        valid = false;
+      }
+
+      // Validate message
+      if (message.value.trim().length < 5) {
+        messageError.textContent = 'Message should be at least 5 characters.';
+        valid = false;
+      }
+
+      if (valid) {
+        alert('Form submitted successfully!');
+        form.reset();
+      }
+    });
+  </script>
+</body>
+</html>
