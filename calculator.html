@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculator App</title>
+  <style>
+    /* ===== Global Styles ===== */
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f5f7fa;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .calculator {
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+      padding: 20px;
+      width: 320px;
+    }
+
+    .display {
+      width: 100%;
+      height: 70px;
+      background: #e9f0fa;
+      border: none;
+      border-radius: 10px;
+      text-align: right;
+      font-size: 2rem;
+      padding: 15px;
+      margin-bottom: 20px;
+      color: #333;
+      overflow-x: auto;
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    button {
+      height: 60px;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      opacity: 0.9;
+    }
+
+    .btn-operator {
+      background-color: #0077ff;
+      color: white;
+    }
+
+    .btn-number {
+      background-color: #f0f0f0;
+      color: #333;
+    }
+
+    .btn-clear {
+      background-color: #ff5c5c;
+      color: white;
+    }
+
+    .btn-equal {
+      background-color: #4caf50;
+      color: white;
+      grid-column: span 2;
+    }
+
+    .btn-zero {
+      grid-column: span 2;
+    }
+
+    @media (max-width: 400px) {
+      .calculator {
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <input type="text" class="display" id="display" readonly>
+    <div class="buttons">
+      <button class="btn-clear" onclick="clearDisplay()">C</button>
+      <button class="btn-operator" onclick="appendValue('/')">÷</button>
+      <button class="btn-operator" onclick="appendValue('*')">×</button>
+      <button class="btn-operator" onclick="backspace()">⌫</button>
+
+      <button class="btn-number" onclick="appendValue('7')">7</button>
+      <button class="btn-number" onclick="appendValue('8')">8</button>
+      <button class="btn-number" onclick="appendValue('9')">9</button>
+      <button class="btn-operator" onclick="appendValue('-')">−</button>
+
+      <button class="btn-number" onclick="appendValue('4')">4</button>
+      <button class="btn-number" onclick="appendValue('5')">5</button>
+      <button class="btn-number" onclick="appendValue('6')">6</button>
+      <button class="btn-operator" onclick="appendValue('+')">+</button>
+
+      <button class="btn-number" onclick="appendValue('1')">1</button>
+      <button class="btn-number" onclick="appendValue('2')">2</button>
+      <button class="btn-number" onclick="appendValue('3')">3</button>
+      <button class="btn-operator" onclick="appendValue('.')">.</button>
+
+      <button class="btn-number btn-zero" onclick="appendValue('0')">0</button>
+      <button class="btn-equal" onclick="calculateResult()">=</button>
+    </div>
+  </div>
+
+  <script>
+    const display = document.getElementById('display');
+
+    // Append button values to display
+    function appendValue(value) {
+      if (display.value === "Error") display.value = "";
+      display.value += value;
+    }
+
+    // Clear the display
+    function clearDisplay() {
+      display.value = "";
+    }
+
+    // Backspace
+    function backspace() {
+      display.value = display.value.slice(0, -1);
+    }
+
+    // Calculate the result
+    function calculateResult() {
+      try {
+        let expression = display.value;
+        if (expression.includes('/0')) {
+          display.value = "Error (÷ by 0)";
+          return;
+        }
+        let result = eval(expression);
+        if (!isFinite(result)) {
+          display.value = "Error";
+        } else {
+          display.value = result;
+        }
+      } catch (error) {
+        display.value = "Error";
+      }
+    }
+
+    // Keyboard support (optional)
+    document.addEventListener('keydown', (e) => {
+      const key = e.key;
+      if (!isNaN(key) || ['+', '-', '*', '/', '.'].includes(key)) {
+        appendValue(key);
+      } else if (key === 'Enter') {
+        calculateResult();
+      } else if (key === 'Backspace') {
+        backspace();
+      } else if (key === 'Escape') {
+        clearDisplay();
+      }
+    });
+  </script>
+</body>
+</html>
